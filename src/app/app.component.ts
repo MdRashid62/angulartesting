@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,31 +7,54 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent  {
   title = 'Template Driven Forms';
   countryList: country[] = [
     new country("1", "India"),
-    new country("2", "USA"),
-    new country("2", "England")
+    new country('2', 'USA'),
+    new country('3', 'England')
   ];
-  onSubmit(contactForm: { value: any; }) {
-    console.log(contactForm.value);
-  }
+
+  contact: contact;
 
   ngOnInit() {
-    
+
+    this.contact = {
+      firstname: "Sachin",
+      lastname: "Tendulkar",
+      email: "sachin@gmail.com",
+      gender: "male",
+      isMarried: true,
+      country: "2",
+      address: { city: "Mumbai", street: "Perry Cross Rd", pincode: "400050" }
+    };
+
   }
-}
 
-
-export class country {
-  id:string;
-  name:string;
-
-  constructor(id:string, name:string) {
-    this.id = id;
-    this.name = name;
+  onSubmit() {
+    console.log(this.contact);
   }
+
+  setDefaults() {
+    this.contact = {
+      firstname: "Sachin",
+      lastname: "Tendulkar",
+      email: "sachin@gmail.com",
+      gender: "male",
+      isMarried: true,
+      country: "2",
+      address: { city: "Mumbai", street: "Perry Cross Rd", pincode: "400050" }
+    };
+  }
+
+  changeCountry() {
+    this.contact.country = "1";
+  }
+
+  reset(contactForm :NgForm) {
+    contactForm.resetForm();
+  }
+
 }
 
 export class contact {
@@ -47,10 +71,12 @@ export class contact {
   }
 }
 
-ngOnInit() {
+export class country {
+  id: string;
+  name: string;
 
+  constructor(id: string, name: string) {
+    this.id = id;
+    this.name = name;
+  }
 }
-
-
-
-
