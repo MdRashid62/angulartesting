@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,12 @@ export class AppComponent {
   onSubmit(contactForm: { value: any; }) {
     console.log(contactForm.value);
   }
+
+  ngOnInit() {
+    
+  }
 }
+
 
 export class country {
   id:string;
@@ -40,6 +45,10 @@ export class contact {
     street: string;
     pincode: string;
   }
+}
+
+ngOnInit() {
+
 }
 
 
